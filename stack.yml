@@ -1,0 +1,45 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: bxxhbxxh
+      MYSQL_DATABASE: cebs
+    ports:
+      - 127.0.0.1:3306:3306
+
+  hst:
+      build: ./hst/
+      ports:
+       - "8000:8000"
+      volumes:
+        - ../huicloud:/code
+      ports:
+        - "8000:8000"
+      links:
+        - db
+      command: >
+        bash -c "
+        python /code/DjoSiteDba/manage.py migrate  DappDbCebs
+        && python /code/hst/hstMain.py"
+      environment:
+        PYTHONPATH: /code/hst/
+      depends_on:
+        - db
+  tup:
+    build: ./tup/
+    volumes:
+      - ../med:/code
+    command: python /code/tup/tupMain.py
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

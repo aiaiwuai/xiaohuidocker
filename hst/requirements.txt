@@ -1,0 +1,9 @@
+pyserial
+django
+serial
+pymysql
+pycurl
+urllib3<1.25
+requests
+numpy
+opencv-python

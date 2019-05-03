@@ -1,0 +1,8 @@
+paho-mqtt 
+urllib3 
+pycurl 
+certifi 
+opencv-python 
+matplotlib 
+pyserial 
+pyqt5 ==5.10.*
