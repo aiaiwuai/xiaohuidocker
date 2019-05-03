@@ -2,8 +2,6 @@
 version: '3.1'
 
 services:
-
-  
   db:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
@@ -13,33 +11,57 @@ services:
       MYSQL_DATABASE: cebs
     ports:
       - 127.0.0.1:3306:3306
+    networks:
+      - cebs_app
+
 
   hst:
+      container_name: hst_contanier
       build: ./hst/
-      ports:
-       - "8000:8000"
       volumes:
         - ../huicloud:/code
       ports:
-        - "8000:8000"
+        - "127.0.0.1:7999:7999"
       links:
         - db
-      command: >
-        bash -c "
-        python /code/DjoSiteDba/manage.py migrate  DappDbCebs
-        && python /code/hst/hstMain.py"
+      entrypoint: "bash /docker-entrypoint.sh"
       environment:
         PYTHONPATH: /code/hst/
       depends_on:
         - db
+      networks:
+        - cebs_app
   tup:
+    container_name: tup_contanier
     build: ./tup/
     volumes:
       - ../med:/code
-    command: python /code/tup/tupMain.py
-
+    links:
+      - hst
+      - db
+    environment:
+        PYTHONPATH: /code/tup/
+    entrypoint: "bash /wait-for-it.sh hst:7999 -- /docker-entrypoint.sh"
+    depends_on:
+      - hst
+      - redis
+    networks:
+      - cebs_app
+  redis:
+    image: redis
+    container_name: redis_container
+    command: redis-server
+    ports:
+      - 127.0.0.1:6379:6379
+    networks:
+      - cebs_app
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
+    networks:
+      - cebs_app
+networks:
+  cebs_app:
+    driver: bridge

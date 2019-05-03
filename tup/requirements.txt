@@ -5,4 +5,5 @@ certifi
 opencv-python 
 matplotlib 
 pyserial 
+redis
 pyqt5 ==5.10.*
