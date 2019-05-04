@@ -1,0 +1,3 @@
+[submodule "docker-mosquitto"]
+	path = docker-mosquitto
+	url = https://github.com/toke/docker-mosquitto.git
