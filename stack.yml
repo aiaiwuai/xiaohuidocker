@@ -62,6 +62,10 @@ services:
       - 8080:8080
     networks:
       - cebs_app
+  mosquitto:
+    build: ./docker-mosquitto/
+    networks:
+      - cebs_app
 networks:
   cebs_app:
     driver: bridge
