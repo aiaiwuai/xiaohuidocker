@@ -71,10 +71,11 @@ services:
     networks:
       - cebs_app
   mqtt:
-    image: eclipse-mosquitto
+    image: toke/mosquitto
+    container_name: mosquitto_container
     ports:
-      - 127.0.0.1:1883:1883
-      - 127.0.0.1:9001:9001
+      - 1883:1883
+      - 9001:9001
     networks:
       - cebs_app
 networks:
