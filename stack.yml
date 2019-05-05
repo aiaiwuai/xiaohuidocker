@@ -19,12 +19,15 @@ services:
       container_name: hst_contanier
       build: ./hst/
       volumes:
-        - ../huicloud:/code
+        #windows
+        - /e/xiaohui/huicloud/:/code
+        #linux
+        #- ../huicloud:/code
       ports:
         - "127.0.0.1:7999:7999"
       links:
         - db
-      entrypoint: "bash /docker-entrypoint.sh"
+      entrypoint: "bash /wait-for-it.sh db:3306 -- /docker-entrypoint.sh"
       environment:
         PYTHONPATH: /code/hst/
       depends_on:
@@ -35,12 +38,17 @@ services:
     container_name: tup_contanier
     build: ./tup/
     volumes:
-      - ../med:/code
+      #windows
+      - /e/xiaohui/med/:/code
+      #linux
+      #- ../med:/code
     links:
       - hst
       - db
+      - mqtt
     environment:
         PYTHONPATH: /code/tup/
+        REDISHOST: redis
     entrypoint: "bash /wait-for-it.sh hst:7999 -- /docker-entrypoint.sh"
     depends_on:
       - hst
@@ -62,8 +70,11 @@ services:
       - 8080:8080
     networks:
       - cebs_app
-  mosquitto:
-    build: ./docker-mosquitto/
+  mqtt:
+    image: eclipse-mosquitto
+    ports:
+      - 127.0.0.1:1883:1883
+      - 127.0.0.1:9001:9001
     networks:
       - cebs_app
 networks:

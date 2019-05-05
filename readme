@@ -1,0 +1,7 @@
+#INSTALL DOCKER'
+#CHANGE stack.yml
+	# volume map
+#MORE
+	auto restart when change file example:
+	  nodemon --ext py --exec "docker-compose  -f ../../xiaohuidocker/stack.yml restart tup"
+
