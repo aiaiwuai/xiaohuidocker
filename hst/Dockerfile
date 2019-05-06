@@ -7,6 +7,6 @@ Add base.py /usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base
 Add opration.py /usr/local/lib/python3.6/site-packages/django/db/backends/mysql/operations.py
 Add docker-entrypoint.sh  /
 Add wait-for-it.sh  /
-RUN chmod +x /wait-for-it.sh
+RUN chmod +x /wait-for-it.sh && chmod +x /docker-entrypoint.sh
 
 WORKDIR /code/hst/

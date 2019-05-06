@@ -6,21 +6,24 @@ services:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
+    container_name: db
     environment:
       MYSQL_ROOT_PASSWORD: bxxhbxxh
       MYSQL_DATABASE: cebs
     ports:
       - 127.0.0.1:3306:3306
+    volumes:
+      - ../db/:/var/lib/mysql
     networks:
       - cebs_app
   hst:
-      container_name: hst_contanier
+      container_name: hst
       build: ./hst/
       volumes:
         #windows
-        - /e/xiaohui/huicloud/:/code
+        # - /e/xiaohui/huicloud/:/code
         #linux
-        #- ../huicloud:/code
+        - ../huicloud:/code
       ports:
         - "127.0.0.1:7999:7999"
       links:
@@ -33,13 +36,13 @@ services:
       networks:
         - cebs_app
   tup:
-    container_name: tup_contanier
+    container_name: tup
     build: ./tup/
     volumes:
       #windows
-      - /e/xiaohui/med/:/code
+      # - /e/xiaohui/med/:/code
       #linux
-      #- ../med:/code
+      - ../med:/code
     links:
       - hst
       - db
@@ -55,7 +58,7 @@ services:
       - cebs_app
   redis:
     image: redis
-    container_name: redis_container
+    container_name: redis
     command: redis-server
     ports:
       - 127.0.0.1:6379:6379
@@ -63,6 +66,7 @@ services:
       - cebs_app
   adminer:
     image: adminer
+    container_name: dbadmin
     restart: always
     ports:
       - 8080:8080
@@ -70,7 +74,7 @@ services:
       - cebs_app
   mqtt:
     image: toke/mosquitto
-    container_name: mosquitto_container
+    container_name: mqtt
     ports:
       - 1883:1883
       - 9001:9001
@@ -78,11 +82,12 @@ services:
       - cebs_app
   h5ui:
     build: ./ui
+    container_name: ui
     volumes:
       #windows
-      - /e/xiaohui/www/:/code
+      # - /e/xiaohui/www/:/code
       #linux
-      #- ../med:/code
+      - ../www:/code
     entrypoint: "bash /docker-entrypoint.sh"
     ports:
       - 7589:8888
