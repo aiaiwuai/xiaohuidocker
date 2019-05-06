@@ -13,8 +13,6 @@ services:
       - 127.0.0.1:3306:3306
     networks:
       - cebs_app
-
-
   hst:
       container_name: hst_contanier
       build: ./hst/
@@ -29,7 +27,7 @@ services:
         - db
       entrypoint: "bash /wait-for-it.sh db:3306 -- /docker-entrypoint.sh"
       environment:
-        PYTHONPATH: /code/hst/
+        PYTHONPATH: /code/:/code/hst:/code/DjoSiteDba
       depends_on:
         - db
       networks:
@@ -76,6 +74,18 @@ services:
     ports:
       - 1883:1883
       - 9001:9001
+    networks:
+      - cebs_app
+  h5ui:
+    build: ./ui
+    volumes:
+      #windows
+      - /e/xiaohui/www/:/code
+      #linux
+      #- ../med:/code
+    entrypoint: "bash /docker-entrypoint.sh"
+    ports:
+      - 7589:8888
     networks:
       - cebs_app
 networks:
