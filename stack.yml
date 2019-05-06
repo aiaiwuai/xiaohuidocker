@@ -69,18 +69,20 @@ services:
     container_name: dbadmin
     restart: always
     ports:
-      - 8080:8080
+      - 8088:8080
     networks:
       - cebs_app
   mqtt:
-    image: toke/mosquitto
+    image: emqx/emqx:latest
     container_name: mqtt
     ports:
       - 1883:1883
-      - 9001:9001
+      - 18083:18083
+      - 8081:8080
+      - 9001:8083
     networks:
       - cebs_app
-  h5ui:
+  ui:
     build: ./ui
     container_name: ui
     volumes:

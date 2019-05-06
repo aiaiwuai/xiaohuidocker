@@ -1,3 +1,4 @@
 #!/bin/bash
-nodemon  launch.js
+ls /code 
+node  launch.js
 exec "$@"
