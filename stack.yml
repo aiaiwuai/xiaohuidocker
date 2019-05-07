@@ -11,7 +11,7 @@ services:
       MYSQL_ROOT_PASSWORD: bxxhbxxh
       MYSQL_DATABASE: cebs
     ports:
-      - 127.0.0.1:3306:3306
+      - 127.0.0.1:3305:3306
     volumes:
       - ../db/:/var/lib/mysql
     networks:
@@ -28,7 +28,7 @@ services:
         - "127.0.0.1:7999:7999"
       links:
         - db
-      entrypoint: "bash /wait-for-it.sh db:3306 -- /docker-entrypoint.sh"
+      entrypoint: "bash /wait-for-it.sh db:3305 -- /docker-entrypoint.sh"
       environment:
         PYTHONPATH: /code/:/code/hst:/code/DjoSiteDba
       depends_on:
@@ -64,7 +64,7 @@ services:
       - 127.0.0.1:6379:6379
     networks:
       - cebs_app
-  adminer:
+  dbadmin:
     image: adminer
     container_name: dbadmin
     restart: always

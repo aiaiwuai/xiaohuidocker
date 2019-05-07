@@ -1,4 +1,15 @@
-#INSTALL DOCKER'
+#INSTALL DOCKER
+sudo apt install docker.io	
+start docker service
+sudo service docker start 
+add current user to docker group
+ERROR: Couldn’t connect to Docker daemon at http+docker://localunixsocket - is it running?
+
+If it’s at a non-standard location, specify the URL with the DOCKER_HOST environment variable.
+
+sudo gpasswd -a ${USER} docker
+
+
 #CHANGE stack.yml
 	# volume map
 #MORE
