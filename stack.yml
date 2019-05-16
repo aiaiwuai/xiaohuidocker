@@ -28,7 +28,7 @@ services:
         - "127.0.0.1:7999:7999"
       links:
         - db
-      entrypoint: "bash /wait-for-it.sh db:3305 -- /docker-entrypoint.sh"
+      entrypoint: "bash /wait-for-it.sh db:3306 -- /docker-entrypoint.sh"
       environment:
         PYTHONPATH: /code/:/code/hst:/code/DjoSiteDba
       depends_on:
@@ -50,7 +50,7 @@ services:
     environment:
         PYTHONPATH: /code/tup/
         REDISHOST: redis
-    entrypoint: "bash /wait-for-it.sh hst:7999 -- /docker-entrypoint.sh"
+    entrypoint: "bash /wait-for-it.sh hst:7999 -- bash /wait-for-it.sh mqtt:1883 -- bash /wait-for-it.sh redis:6379 -- /docker-entrypoint.sh"
     depends_on:
       - hst
       - redis
@@ -73,7 +73,8 @@ services:
     networks:
       - cebs_app
   mqtt:
-    image: emqx/emqx:latest
+    
+    image: eclipse-mosquitto:latest
     container_name: mqtt
     ports:
       - 1883:1883
