@@ -20,9 +20,6 @@ services:
       container_name: hst
       build: ./hst/
       volumes:
-        #windows
-        # - /e/xiaohui/huicloud/:/code
-        #linux
         - ../huicloud:/code
       ports:
         - "127.0.0.1:7999:7999"
@@ -39,9 +36,6 @@ services:
     container_name: tup
     build: ./tup/
     volumes:
-      #windows
-      # - /e/xiaohui/med/:/code
-      #linux
       - ../med:/code
     links:
       - hst
@@ -87,9 +81,6 @@ services:
     build: ./ui
     container_name: ui
     volumes:
-      #windows
-      # - /e/xiaohui/www/:/code
-      #linux
       - ../www:/code
     entrypoint: "bash /docker-entrypoint.sh"
     ports:
