@@ -1,0 +1,1391 @@
+===================================
+https://docs.docker.com/install/linux/docker-ce/ubuntu/
+===================================
+
+1. sudo apt-get remove docker docker-engine docker.io containerd runc
+
+2. sudo apt-get update
+
+3. sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+
+4. sudo apt-get remove curl
+
+5. download http://archive.ubuntu.com/ubuntu/pool/main/c/curl/curl_7.64.0.orig.tar.gz
+tar xvf curl_7.64.0.orig.tar.gz
+cd curl_7.64.0/
+./configure
+make
+make install
+
+6. curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+7. sudo apt-key fingerprint 0EBFCD88
+    
+	pub   rsa4096 2017-02-22 [SCEA]
+	      9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
+	uid           [ unknown] Docker Release (CE deb) <docker@docker.com>
+	sub   rsa4096 2017-02-22 [S]
+
+====================
+	pub   4096R/0EBFCD88 2017-02-22
+      	Key fingerprint = 9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
+	uid                  Docker Release (CE deb) <docker@docker.com>
+	sub   4096R/F273FCD8 2017-02-22
+
+
+8. sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+9. sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+
+10. apt-cache madison docker-ce (optional)
+
+ docker-ce | 5:18.09.6~3-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 5:18.09.5~3-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 5:18.09.4~3-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 5:18.09.3~3-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 5:18.09.2~3-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 5:18.09.1~3-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 5:18.09.0~3-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 18.06.3~ce~3-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 18.06.2~ce~3-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 18.06.1~ce~3-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 18.06.0~ce~3-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 18.03.1~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 18.03.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 17.12.1~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 17.12.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 17.09.1~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 17.09.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 17.06.2~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 17.06.1~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 17.06.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 17.03.3~ce-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 17.03.2~ce-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 17.03.1~ce-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+ docker-ce | 17.03.0~ce-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+
+sudo apt-get install docker-ce=<VERSION_STRING> docker-ce-cli=<VERSION_STRING> containerd.io
+
+sudo apt-get install docker-ce=5:18.09.6~3-0~ubuntu-xenial docker-ce-cli=5:18.09.6~3-0~ubuntu-xenial containerd.io
+
+11. sudo docker run hello-world (test if it is OK)
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+1b930d010525: Pull complete 
+Digest: sha256:5f179596a7335398b805f036f7e8561b6f0e32cd30a32f5e19d17a3cda6cc33d
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+===================================
+https://docs.docker.com/compose/install/
+===================================
+
+12 install docker-compose
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+$ docker-compose --version
+docker-compose version 1.24.0, build 1110ad01
+
+==================================
+run med
+
+
+cebsdocker
+docker and ui
+
+mkdir ./somedir
+cd ./somedir
+git clone git@github.com:aiaiwuai/ui.git www
+git clone git@github.com:aiaiwuai/xiaohuidocker.git xiaohuidocker
+git clone git@github.com:Baxianxiahai/huicloud.git
+cd huicloud
+git checkout qwangdev
+cd ../
+git clone git@github.com:Baxianxiahai/med.git
+cd med
+git checkout qwangdev
+cd ../
+mkdir ./db
+
+安装docker
+
+安装docker(系统不限 win/linux/mac 均可) 确保docker docker-compose 可用
+
+cd xiaohuidocker
+
+docker-compose -f stack.yml up
+docker-compose -f stack.yml [up|restart] [tup|hst|ui....]
+docker-compose -f stack.yml logs -f tup
+
+初始化hst数据
+
+docker exec -it hst /bin/bash python PkgUt/_UtEntry.py
+
+or
+
+==================start===============
+(pycvtf)hitpony@kickseed:~/eclipse-workspace/cebs_mk2$ sudo docker exec -it hst /bin/bash
+sudo: unable to resolve host kickseed
+root@f3e8e408c663:/code/hst# python PkgUt/_UtEntry.py
+f3e8e408c663
+LOCAL_WK_TARGET:-1
+hst_suite_printer 运行
+tc_dba_cebs_001, time in second =  1559519663.1753218
+tc_dba_cebs_001 result =  {'restTag': 'dba', 'actionId': 3799, 'parFlag': 1, 'parContent': {'sucFlag': 1, 'errCode': 0}}
+.tc_dba_cebs_011, time in second =  1559519663.19199
+test tc_dba_cebs_011 result is OK
+.
+----------------------------------------------------------------------
+Ran 2 tests in 0.104s
+
+OK
+root@f3e8e408c663:/code/hst# 
+==================end===============
+
+为了让当前用户也可以启动docker
+#sudo gpasswd -a ${USER} docker
+restart PC, than user hitpony can launch docker
+
+重启tup
+docker-compose -f stack.yml up tup
+
+如何进入docker
+docker exec -it hst /bin/bash
+docker exec -it med /bin/bash
+
+docker其他常用命令
+docker ps  (看docker进程)
+docker container ls  (看docker进程)
+docker kill tup/hst  (kill docker进程)
+docker-compose -f stack.yml up
+docker-compose -f stack.yml kill
+docker-compose -f stack.yml logs -> 查看所有历史的日志
+docker-compose -f stack.yml logs tup -> 查看tup日志
+docker-compose -f stack.yml logs -f tup -> 查看当前所有历史，直到正在运行的日志
+
+端口
+
+    数据库管理
+    127.0.0.1:8088,  user/pass: root/bxxhbxxh
+
+    UI
+    127.0.0.1:7589
+
+    MQTT WEB 管理 (不存在了)
+    127.0.0.1:18083,   user/pass: admin/public
+
+==================================
+
+docker-compose -f stack.yml up
+
+==================output:===============
+
+docker-compose -f stack.yml up
+Creating network "xiaohuidocker_cebs_app" with driver "bridge"
+Pulling db (mysql:)...
+latest: Pulling from library/mysql
+743f2d6c1f65: Pull complete
+3f0c413ee255: Pull complete
+aef1ef8f1aac: Pull complete
+f9ee573e34cb: Pull complete
+3f237e01f153: Pull complete
+f9da32e8682a: Pull complete
+4b8da52fb357: Pull complete
+3416ca8f6890: Pull complete
+786698c2d5de: Pull complete
+4ddf84d07bd1: Pull complete
+cd3aa23461b6: Pull complete
+9f287a2a95ad: Pull complete
+Digest: sha256:711df5b93720801b3a727864aba18c2ae46c07f9fe33d5ce9c1f5cbc2c035101
+Status: Downloaded newer image for mysql:latest
+Building hst
+Step 1/11 : FROM python:3.6
+3.6: Pulling from library/python
+c5e155d5a1d1: Pull complete
+221d80d00ae9: Pull complete
+4250b3117dca: Pull complete
+3b7ca19181b2: Pull complete
+425d7b2a5bcc: Pull complete
+d7a526a3eca5: Pull complete
+73a96b82cd2c: Pull complete
+63e5b6830bb3: Pull complete
+811d2b8ea37b: Pull complete
+Digest: sha256:b8f33201e729b6713b00f204a4fb1efe2a4d112e11efe0f3c380a76498e5442e
+Status: Downloaded newer image for python:3.6
+ ---> 0668df180a32
+Step 2/11 : Add  requirements.txt /
+ ---> 57cc94af0962
+Step 3/11 : add pip.conf /etc/pip.conf
+ ---> b6e047567d4e
+Step 4/11 : RUN pip install --upgrade pip
+ ---> Running in 27dd86cb01c2
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Requirement already up-to-date: pip in /usr/local/lib/python3.6/site-packages (19.1.1)
+Removing intermediate container 27dd86cb01c2
+ ---> 2f5f47259799
+Step 5/11 : RUN pip install -r requirements.txt
+ ---> Running in 899eb551d4c0
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Collecting pyserial (from -r requirements.txt (line 1))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/0d/e4/2a744dd9e3be04a0c0907414e2a01a7c88bb3915cbe3c8cc06e209f59c30/pyserial-3.4-py2.py3-none-any.whl (193kB)
+Collecting django (from -r requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/b1/1d/2476110614367adfb079a9bc718621f9fc8351e9214e1750cae1832d4090/Django-2.2.1-py3-none-any.whl (7.4MB)
+Collecting serial (from -r requirements.txt (line 3))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/1f/51/6a260c498162c37d0759f3759b7647a10d8d30caba1cfc9aa4b5b1f0d08b/serial-0.0.97-py2.py3-none-any.whl (40kB)
+Collecting pymysql (from -r requirements.txt (line 4))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/ed/39/15045ae46f2a123019aa968dfcba0396c161c20f855f11dea6796bcaae95/PyMySQL-0.9.3-py2.py3-none-any.whl (47kB)
+Collecting pycurl (from -r requirements.txt (line 5))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/e8/e4/0dbb8735407189f00b33d84122b9be52c790c7c3b25286826f4e1bdb7bde/pycurl-7.43.0.2.tar.gz (214kB)
+Collecting urllib3<1.25 (from -r requirements.txt (line 6))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/01/11/525b02e4acc0c747de8b6ccdab376331597c569c42ea66ab0a1dbd36eca2/urllib3-1.24.3-py2.py3-none-any.whl (118kB)
+Collecting requests (from -r requirements.txt (line 7))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/7d/e3/20f3d364d6c8e5d2353c72a67778eb189176f08e873c9900e10c0287b84b/requests-2.21.0-py2.py3-none-any.whl (57kB)
+Collecting numpy (from -r requirements.txt (line 8))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/c1/e2/4db8df8f6cddc98e7d7c537245ef2f4e41a1ed17bf0c3177ab3cc6beac7f/numpy-1.16.3-cp36-cp36m-manylinux1_x86_64.whl (17.3MB)
+Collecting opencv-python (from -r requirements.txt (line 9))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/7b/d2/a2dbf83d4553ca6b3701d91d75e42fe50aea97acdc00652dca515749fb5d/opencv_python-4.1.0.25-cp36-cp36m-manylinux1_x86_64.whl (26.6MB)
+Collecting pytz (from django->-r requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/3d/73/fe30c2daaaa0713420d0382b16fbb761409f532c56bdcc514bf7b6262bb6/pytz-2019.1-py2.py3-none-any.whl (510kB)
+Collecting sqlparse (from django->-r requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/ef/53/900f7d2a54557c6a37886585a91336520e5539e3ae2423ff1102daf4f3a7/sqlparse-0.3.0-py2.py3-none-any.whl
+Collecting iso8601>=0.1.12 (from serial->-r requirements.txt (line 3))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/ef/57/7162609dab394d38bbc7077b7ba0a6f10fb09d8b7701ea56fa1edc0c4345/iso8601-0.1.12-py2.py3-none-any.whl
+Collecting future>=0.17.1 (from serial->-r requirements.txt (line 3))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/90/52/e20466b85000a181e1e144fd8305caf2cf475e2f9674e797b222f8105f5f/future-0.17.1.tar.gz (829kB)
+Collecting pyyaml>=3.13 (from serial->-r requirements.txt (line 3))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/9f/2c/9417b5c774792634834e730932745bc09a7d36754ca00acf1ccd1ac2594d/PyYAML-5.1.tar.gz (274kB)
+Collecting chardet<3.1.0,>=3.0.2 (from requests->-r requirements.txt (line 7))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/bc/a9/01ffebfb562e4274b6487b4bb1ddec7ca55ec7510b22e4c51f14098443b8/chardet-3.0.4-py2.py3-none-any.whl (133kB)
+Collecting certifi>=2017.4.17 (from requests->-r requirements.txt (line 7))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/60/75/f692a584e85b7eaba0e03827b3d51f45f571c2e793dd731e598828d380aa/certifi-2019.3.9-py2.py3-none-any.whl (158kB)
+Collecting idna<2.9,>=2.5 (from requests->-r requirements.txt (line 7))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/14/2c/cd551d81dbe15200be1cf41cd03869a46fe7226e7450af7a6545bfc474c9/idna-2.8-py2.py3-none-any.whl (58kB)
+Building wheels for collected packages: pycurl, future, pyyaml
+  Building wheel for pycurl (setup.py): started
+  Building wheel for pycurl (setup.py): finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/c4/3f/7f/9cf807ada76f40f4d689e948a0c9b057ea458198ade7aa0966
+  Building wheel for future (setup.py): started
+  Building wheel for future (setup.py): finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/3f/66/fe/9c4fd5c707a9f26993ba157f0752d84d5c7e26aedbefb84f76
+  Building wheel for pyyaml (setup.py): started
+  Building wheel for pyyaml (setup.py): finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/91/55/8c/94c56b8cb6f33a264cd157b400283e7fca8c2f7c9ca25d27e6
+Successfully built pycurl future pyyaml
+Installing collected packages: pyserial, pytz, sqlparse, django, iso8601, future, pyyaml, serial, pymysql, pycurl, urllib3, chardet, certifi, idna, requests, numpy, opencv-python
+Successfully installed certifi-2019.3.9 chardet-3.0.4 django-2.2.1 future-0.17.1 idna-2.8 iso8601-0.1.12 numpy-1.16.3 opencv-python-4.1.0.25 pycurl-7.43.0.2 pymysql-0.9.3 pyserial-3.4 pytz-2019.1 pyyaml-5.1 requests-2.21.0 serial-0.0.97 sqlparse-0.3.0 urllib3-1.24.3
+Removing intermediate container 899eb551d4c0
+ ---> d571313f2584
+Step 6/11 : Add base.py /usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py
+ ---> e7dfbee767fa
+Step 7/11 : Add opration.py /usr/local/lib/python3.6/site-packages/django/db/backends/mysql/operations.py
+ ---> 33554a645685
+Step 8/11 : Add docker-entrypoint.sh  /
+ ---> 656140210203
+Step 9/11 : Add wait-for-it.sh  /
+ ---> 6227449d8d7a
+Step 10/11 : RUN chmod +x /wait-for-it.sh && chmod +x /docker-entrypoint.sh
+ ---> Running in a00d7366b36c
+Removing intermediate container a00d7366b36c
+ ---> 8f8e284b429e
+Step 11/11 : WORKDIR /code/hst/
+ ---> Running in 65cee0f5cc42
+Removing intermediate container 65cee0f5cc42
+ ---> 52005ec4fd19
+Successfully built 52005ec4fd19
+Successfully tagged xiaohuidocker_hst:latest
+WARNING: Image for service hst was built because it did not already exist. To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.
+Pulling redis (redis:)...
+latest: Pulling from library/redis
+743f2d6c1f65: Already exists
+171658c5966d: Pull complete
+fbef10bd7a65: Pull complete
+98afd60e45e4: Pull complete
+495c87fda859: Pull complete
+ed6767858416: Pull complete
+Digest: sha256:2dfa6432744659268d001d16c39f7be52ee73ef7e1001ff80643f0f7bdee117e
+Status: Downloaded newer image for redis:latest
+Pulling dbadmin (adminer:)...
+latest: Pulling from library/adminer
+e7c96db7181b: Pull complete
+7270d632124c: Pull complete
+13605bac8660: Pull complete
+7c5ed3c35631: Pull complete
+4409f1583e97: Pull complete
+8e53659d9d83: Pull complete
+75bd1c1145ab: Pull complete
+176ee747c576: Pull complete
+81d4897f92db: Pull complete
+6edecebb0fd1: Pull complete
+f1be540bfba3: Pull complete
+d2508d0bb875: Pull complete
+2f2cb09bdbe7: Pull complete
+08dd564fa304: Pull complete
+163fd9b41c40: Pull complete
+f918ae90007c: Pull complete
+Digest: sha256:d8d899606c63a1f3af060c3041b4431ffde6c2d882d3857edac95f4bf5044c21
+Status: Downloaded newer image for adminer:latest
+Pulling mqtt (emqx/emqx:latest)...
+latest: Pulling from emqx/emqx
+bdf0201b3a05: Pull complete
+618d7bf130a2: Pull complete
+9bdf1d410273: Pull complete
+ddf835b393a2: Pull complete
+e852cbb94105: Pull complete
+c83c734ffacd: Pull complete
+06b37eeb3738: Pull complete
+Digest: sha256:c50353fb5d9ac8145c2eb77abe69083442cbc451d3104b85a3d64d32f39b0484
+Status: Downloaded newer image for emqx/emqx:latest
+Building tup
+Step 1/12 : FROM python:3.6
+ ---> 0668df180a32
+Step 2/12 : run  apt update
+ ---> Running in ab3f99e6fa52
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Ign:1 http://deb.debian.org/debian stretch InRelease
+Get:2 http://deb.debian.org/debian stretch-updates InRelease [91.0 kB]
+Get:3 http://security.debian.org/debian-security stretch/updates InRelease [94.3 kB]
+Get:4 http://deb.debian.org/debian stretch Release [118 kB]
+Get:5 http://security.debian.org/debian-security stretch/updates/main amd64 Packages [487 kB]
+Get:6 http://deb.debian.org/debian stretch-updates/main amd64 Packages [31.7 kB]
+Get:7 http://deb.debian.org/debian stretch Release.gpg [2434 B]
+Get:8 http://deb.debian.org/debian stretch/main amd64 Packages [7082 kB]
+Get:8 http://deb.debian.org/debian stretch/main amd64 Packages [7082 kB]
+Get:8 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 Packages [7082 kB]
+Get:8 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 Packages [7082 kB]
+Get:8 http://cdn-fastly.deb.debian.org/debian stretch/main amd64 Packages [7082 kB]
+Fetched 5069 kB in 17min 40s (4780 B/s)
+Reading package lists...
+Building dependency tree...
+Reading state information...
+2 packages can be upgraded. Run 'apt list --upgradable' to see them.
+Removing intermediate container ab3f99e6fa52
+ ---> e93b497257ea
+Step 3/12 : run apt-get install -y libgl1-mesa-glx
+ ---> Running in a5a0a0dc7b0d
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libdrm-amdgpu1 libdrm-intel1 libdrm-nouveau2 libdrm-radeon1 libdrm2
+  libgl1-mesa-dri libglapi-mesa libllvm3.9 libpciaccess0 libsensors4
+  libtxc-dxtn-s2tc libx11-xcb1 libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0
+  libxcb-present0 libxcb-sync1 libxshmfence1 libxxf86vm1
+Suggested packages:
+  pciutils lm-sensors
+The following NEW packages will be installed:
+  libdrm-amdgpu1 libdrm-intel1 libdrm-nouveau2 libdrm-radeon1 libdrm2
+  libgl1-mesa-dri libgl1-mesa-glx libglapi-mesa libllvm3.9 libpciaccess0
+  libsensors4 libtxc-dxtn-s2tc libx11-xcb1 libxcb-dri2-0 libxcb-dri3-0
+  libxcb-glx0 libxcb-present0 libxcb-sync1 libxshmfence1 libxxf86vm1
+0 upgraded, 20 newly installed, 0 to remove and 2 not upgraded.
+Need to get 17.1 MB of archives.
+After this operation, 165 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian stretch/main amd64 libdrm2 amd64 2.4.74-1 [36.2 kB]
+Get:2 http://deb.debian.org/debian stretch/main amd64 libdrm-amdgpu1 amd64 2.4.74-1 [26.4 kB]
+Get:3 http://deb.debian.org/debian stretch/main amd64 libpciaccess0 amd64 0.13.4-1+b2 [50.0 kB]
+Get:4 http://deb.debian.org/debian stretch/main amd64 libdrm-intel1 amd64 2.4.74-1 [68.7 kB]
+Get:5 http://deb.debian.org/debian stretch/main amd64 libdrm-nouveau2 amd64 2.4.74-1 [25.1 kB]
+Get:6 http://deb.debian.org/debian stretch/main amd64 libdrm-radeon1 amd64 2.4.74-1 [30.2 kB]
+Get:7 http://deb.debian.org/debian stretch/main amd64 libllvm3.9 amd64 1:3.9.1-9 [11.3 MB]
+Get:8 http://deb.debian.org/debian stretch/main amd64 libsensors4 amd64 1:3.4.0-4 [53.3 kB]
+Get:9 http://deb.debian.org/debian stretch/main amd64 libgl1-mesa-dri amd64 13.0.6-1+b2 [4536 kB]
+Get:10 http://deb.debian.org/debian stretch/main amd64 libglapi-mesa amd64 13.0.6-1+b2 [58.9 kB]
+Get:11 http://deb.debian.org/debian stretch/main amd64 libx11-xcb1 amd64 2:1.6.4-3+deb9u1 [183 kB]
+Get:12 http://deb.debian.org/debian stretch/main amd64 libxcb-dri2-0 amd64 1.12-1 [97.2 kB]
+Get:13 http://deb.debian.org/debian stretch/main amd64 libxcb-dri3-0 amd64 1.12-1 [95.6 kB]
+Get:14 http://deb.debian.org/debian stretch/main amd64 libxcb-glx0 amd64 1.12-1 [113 kB]
+Get:15 http://deb.debian.org/debian stretch/main amd64 libxcb-present0 amd64 1.12-1 [95.8 kB]
+Get:16 http://deb.debian.org/debian stretch/main amd64 libxcb-sync1 amd64 1.12-1 [99.2 kB]
+Get:17 http://deb.debian.org/debian stretch/main amd64 libxshmfence1 amd64 1.2-1+b2 [7922 B]
+Get:18 http://deb.debian.org/debian stretch/main amd64 libxxf86vm1 amd64 1:1.1.4-1+b2 [20.8 kB]
+Get:19 http://deb.debian.org/debian stretch/main amd64 libgl1-mesa-glx amd64 13.0.6-1+b2 [167 kB]
+Get:20 http://deb.debian.org/debian stretch/main amd64 libtxc-dxtn-s2tc amd64 1.0+git20151227-2 [48.4 kB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 17.1 MB in 16min 46s (17.0 kB/s)
+Selecting previously unselected package libdrm2:amd64.
+(Reading database ... 30555 files and directories currently installed.)
+Preparing to unpack .../00-libdrm2_2.4.74-1_amd64.deb ...
+Unpacking libdrm2:amd64 (2.4.74-1) ...
+Selecting previously unselected package libdrm-amdgpu1:amd64.
+Preparing to unpack .../01-libdrm-amdgpu1_2.4.74-1_amd64.deb ...
+Unpacking libdrm-amdgpu1:amd64 (2.4.74-1) ...
+Selecting previously unselected package libpciaccess0:amd64.
+Preparing to unpack .../02-libpciaccess0_0.13.4-1+b2_amd64.deb ...
+Unpacking libpciaccess0:amd64 (0.13.4-1+b2) ...
+Selecting previously unselected package libdrm-intel1:amd64.
+Preparing to unpack .../03-libdrm-intel1_2.4.74-1_amd64.deb ...
+Unpacking libdrm-intel1:amd64 (2.4.74-1) ...
+Selecting previously unselected package libdrm-nouveau2:amd64.
+Preparing to unpack .../04-libdrm-nouveau2_2.4.74-1_amd64.deb ...
+Unpacking libdrm-nouveau2:amd64 (2.4.74-1) ...
+Selecting previously unselected package libdrm-radeon1:amd64.
+Preparing to unpack .../05-libdrm-radeon1_2.4.74-1_amd64.deb ...
+Unpacking libdrm-radeon1:amd64 (2.4.74-1) ...
+Selecting previously unselected package libllvm3.9:amd64.
+Preparing to unpack .../06-libllvm3.9_1%3a3.9.1-9_amd64.deb ...
+Unpacking libllvm3.9:amd64 (1:3.9.1-9) ...
+Selecting previously unselected package libsensors4:amd64.
+Preparing to unpack .../07-libsensors4_1%3a3.4.0-4_amd64.deb ...
+Unpacking libsensors4:amd64 (1:3.4.0-4) ...
+Selecting previously unselected package libgl1-mesa-dri:amd64.
+Preparing to unpack .../08-libgl1-mesa-dri_13.0.6-1+b2_amd64.deb ...
+Unpacking libgl1-mesa-dri:amd64 (13.0.6-1+b2) ...
+Selecting previously unselected package libglapi-mesa:amd64.
+Preparing to unpack .../09-libglapi-mesa_13.0.6-1+b2_amd64.deb ...
+Unpacking libglapi-mesa:amd64 (13.0.6-1+b2) ...
+Selecting previously unselected package libx11-xcb1:amd64.
+Preparing to unpack .../10-libx11-xcb1_2%3a1.6.4-3+deb9u1_amd64.deb ...
+Unpacking libx11-xcb1:amd64 (2:1.6.4-3+deb9u1) ...
+Selecting previously unselected package libxcb-dri2-0:amd64.
+Preparing to unpack .../11-libxcb-dri2-0_1.12-1_amd64.deb ...
+Unpacking libxcb-dri2-0:amd64 (1.12-1) ...
+Selecting previously unselected package libxcb-dri3-0:amd64.
+Preparing to unpack .../12-libxcb-dri3-0_1.12-1_amd64.deb ...
+Unpacking libxcb-dri3-0:amd64 (1.12-1) ...
+Selecting previously unselected package libxcb-glx0:amd64.
+Preparing to unpack .../13-libxcb-glx0_1.12-1_amd64.deb ...
+Unpacking libxcb-glx0:amd64 (1.12-1) ...
+Selecting previously unselected package libxcb-present0:amd64.
+Preparing to unpack .../14-libxcb-present0_1.12-1_amd64.deb ...
+Unpacking libxcb-present0:amd64 (1.12-1) ...
+Selecting previously unselected package libxcb-sync1:amd64.
+Preparing to unpack .../15-libxcb-sync1_1.12-1_amd64.deb ...
+Unpacking libxcb-sync1:amd64 (1.12-1) ...
+Selecting previously unselected package libxshmfence1:amd64.
+Preparing to unpack .../16-libxshmfence1_1.2-1+b2_amd64.deb ...
+Unpacking libxshmfence1:amd64 (1.2-1+b2) ...
+Selecting previously unselected package libxxf86vm1:amd64.
+Preparing to unpack .../17-libxxf86vm1_1%3a1.1.4-1+b2_amd64.deb ...
+Unpacking libxxf86vm1:amd64 (1:1.1.4-1+b2) ...
+Selecting previously unselected package libgl1-mesa-glx:amd64.
+Preparing to unpack .../18-libgl1-mesa-glx_13.0.6-1+b2_amd64.deb ...
+Unpacking libgl1-mesa-glx:amd64 (13.0.6-1+b2) ...
+Selecting previously unselected package libtxc-dxtn-s2tc:amd64.
+Preparing to unpack .../19-libtxc-dxtn-s2tc_1.0+git20151227-2_amd64.deb ...
+Unpacking libtxc-dxtn-s2tc:amd64 (1.0+git20151227-2) ...
+Setting up libxcb-present0:amd64 (1.12-1) ...
+Setting up libxcb-dri2-0:amd64 (1.12-1) ...
+Setting up libxcb-dri3-0:amd64 (1.12-1) ...
+Setting up libxcb-glx0:amd64 (1.12-1) ...
+Setting up libxshmfence1:amd64 (1.2-1+b2) ...
+Setting up libllvm3.9:amd64 (1:3.9.1-9) ...
+Setting up libtxc-dxtn-s2tc:amd64 (1.0+git20151227-2) ...
+update-alternatives: using /usr/lib/x86_64-linux-gnu/s2tc/libtxc_dxtn.so to provide /usr/lib/x86_64-linux-gnu/libtxc_dxtn.so (libtxc-dxtn-x86_64-linux-gnu) in auto mode
+Setting up libglapi-mesa:amd64 (13.0.6-1+b2) ...
+Setting up libdrm2:amd64 (2.4.74-1) ...
+Setting up libxcb-sync1:amd64 (1.12-1) ...
+Setting up libx11-xcb1:amd64 (2:1.6.4-3+deb9u1) ...
+Processing triggers for libc-bin (2.24-11+deb9u4) ...
+Setting up libpciaccess0:amd64 (0.13.4-1+b2) ...
+Setting up libsensors4:amd64 (1:3.4.0-4) ...
+Setting up libdrm-radeon1:amd64 (2.4.74-1) ...
+Setting up libxxf86vm1:amd64 (1:1.1.4-1+b2) ...
+Setting up libdrm-nouveau2:amd64 (2.4.74-1) ...
+Setting up libdrm-amdgpu1:amd64 (2.4.74-1) ...
+Setting up libdrm-intel1:amd64 (2.4.74-1) ...
+Setting up libgl1-mesa-glx:amd64 (13.0.6-1+b2) ...
+Setting up libgl1-mesa-dri:amd64 (13.0.6-1+b2) ...
+Processing triggers for libc-bin (2.24-11+deb9u4) ...
+Removing intermediate container a5a0a0dc7b0d
+ ---> a4e74e02e1af
+Step 4/12 : Add  requirements.txt /
+ ---> 971e33cd59b0
+Step 5/12 : add pip.conf /etc/pip.conf
+ ---> 7ba4bb7b6ae2
+Step 6/12 : RUN pip install --upgrade pip
+ ---> Running in 8b15a7adad9b
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Requirement already up-to-date: pip in /usr/local/lib/python3.6/site-packages (19.1.1)
+Removing intermediate container 8b15a7adad9b
+ ---> b3e2b34bb02e
+Step 7/12 : RUN pip install -r requirements.txt
+ ---> Running in 3e998ca64381
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Collecting paho-mqtt (from -r requirements.txt (line 1))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/25/63/db25e62979c2a716a74950c9ed658dce431b5cb01fde29eb6cba9489a904/paho-mqtt-1.4.0.tar.gz (88kB)
+Collecting urllib3 (from -r requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/39/ec/d93dfc69617a028915df914339ef66936ea976ef24fa62940fd86ba0326e/urllib3-1.25.2-py2.py3-none-any.whl (150kB)
+Collecting pycurl (from -r requirements.txt (line 3))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/e8/e4/0dbb8735407189f00b33d84122b9be52c790c7c3b25286826f4e1bdb7bde/pycurl-7.43.0.2.tar.gz (214kB)
+Collecting certifi (from -r requirements.txt (line 4))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/60/75/f692a584e85b7eaba0e03827b3d51f45f571c2e793dd731e598828d380aa/certifi-2019.3.9-py2.py3-none-any.whl (158kB)
+Collecting opencv-python (from -r requirements.txt (line 5))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/7b/d2/a2dbf83d4553ca6b3701d91d75e42fe50aea97acdc00652dca515749fb5d/opencv_python-4.1.0.25-cp36-cp36m-manylinux1_x86_64.whl (26.6MB)
+Collecting matplotlib (from -r requirements.txt (line 6))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/e9/69/f5e05f578585ed9935247be3788b374f90701296a70c8871bcd6d21edb00/matplotlib-3.0.3-cp36-cp36m-manylinux1_x86_64.whl (13.0MB)
+Collecting pyserial (from -r requirements.txt (line 7))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/0d/e4/2a744dd9e3be04a0c0907414e2a01a7c88bb3915cbe3c8cc06e209f59c30/pyserial-3.4-py2.py3-none-any.whl (193kB)
+Collecting redis (from -r requirements.txt (line 8))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/ac/a7/cff10cc5f1180834a3ed564d148fb4329c989cbb1f2e196fc9a10fa07072/redis-3.2.1-py2.py3-none-any.whl (65kB)
+Collecting pyqt5==5.10.* (from -r requirements.txt (line 9))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/e4/15/4e2e49f64884edbab6f833c6fd3add24d7938f2429aec1f2883e645d4d8f/PyQt5-5.10.1-5.10.1-cp35.cp36.cp37.cp38-abi3-manylinux1_x86_64.whl (107.8MB)
+Collecting numpy>=1.11.3 (from opencv-python->-r requirements.txt (line 5))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/c1/e2/4db8df8f6cddc98e7d7c537245ef2f4e41a1ed17bf0c3177ab3cc6beac7f/numpy-1.16.3-cp36-cp36m-manylinux1_x86_64.whl (17.3MB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1 (from matplotlib->-r requirements.txt (line 6))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/dd/d9/3ec19e966301a6e25769976999bd7bbe552016f0d32b577dc9d63d2e0c49/pyparsing-2.4.0-py2.py3-none-any.whl (62kB)
+Collecting python-dateutil>=2.1 (from matplotlib->-r requirements.txt (line 6))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/41/17/c62faccbfbd163c7f57f3844689e3a78bae1f403648a6afb1d0866d87fbb/python_dateutil-2.8.0-py2.py3-none-any.whl (226kB)
+Collecting kiwisolver>=1.0.1 (from matplotlib->-r requirements.txt (line 6))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/f8/a1/5742b56282449b1c0968197f63eae486eca2c35dcd334bab75ad524e0de1/kiwisolver-1.1.0-cp36-cp36m-manylinux1_x86_64.whl (90kB)
+Collecting cycler>=0.10 (from matplotlib->-r requirements.txt (line 6))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/f7/d2/e07d3ebb2bd7af696440ce7e754c59dd546ffe1bbe732c8ab68b9c834e61/cycler-0.10.0-py2.py3-none-any.whl
+Collecting sip<4.20,>=4.19.4 (from pyqt5==5.10.*->-r requirements.txt (line 9))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/8a/ea/d317ce5696dda4df7c156cd60447cda22833b38106c98250eae1451f03ec/sip-4.19.8-cp36-cp36m-manylinux1_x86_64.whl (66kB)
+Collecting six>=1.5 (from python-dateutil>=2.1->matplotlib->-r requirements.txt (line 6))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/73/fb/00a976f728d0d1fecfe898238ce23f502a721c0ac0ecfedb80e0d88c64e9/six-1.12.0-py2.py3-none-any.whl
+Requirement already satisfied: setuptools in /usr/local/lib/python3.6/site-packages (from kiwisolver>=1.0.1->matplotlib->-r requirements.txt (line 6)) (41.0.1)
+Building wheels for collected packages: paho-mqtt, pycurl
+  Building wheel for paho-mqtt (setup.py): started
+  Building wheel for paho-mqtt (setup.py): finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/1d/c4/a3/b75d801231ca95805cd84ee7f8122f5aca50600104a5612834
+  Building wheel for pycurl (setup.py): started
+  Building wheel for pycurl (setup.py): finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/c4/3f/7f/9cf807ada76f40f4d689e948a0c9b057ea458198ade7aa0966
+Successfully built paho-mqtt pycurl
+Installing collected packages: paho-mqtt, urllib3, pycurl, certifi, numpy, opencv-python, pyparsing, six, python-dateutil, kiwisolver, cycler, matplotlib, pyserial, redis, sip, pyqt5
+Successfully installed certifi-2019.3.9 cycler-0.10.0 kiwisolver-1.1.0 matplotlib-3.0.3 numpy-1.16.3 opencv-python-4.1.0.25 paho-mqtt-1.4.0 pycurl-7.43.0.2 pyparsing-2.4.0 pyqt5-5.10.1 pyserial-3.4 python-dateutil-2.8.0 redis-3.2.1 sip-4.19.8 six-1.12.0 urllib3-1.25.2
+Removing intermediate container 3e998ca64381
+ ---> 17c9d0dbdd3d
+Step 8/12 : Add wait-for-it.sh  /
+ ---> 81225a52d29d
+Step 9/12 : RUN chmod +x /wait-for-it.sh
+ ---> Running in 0e2731d5d313
+Removing intermediate container 0e2731d5d313
+ ---> 86d15daef452
+Step 10/12 : Add docker-entrypoint.sh  /
+ ---> 41c4cf89a82e
+Step 11/12 : RUN chmod +x /docker-entrypoint.sh
+ ---> Running in 439f7a51d457
+Removing intermediate container 439f7a51d457
+ ---> a38364434dfb
+Step 12/12 : WORKDIR /code/tup
+ ---> Running in 706c7388b155
+Removing intermediate container 706c7388b155
+ ---> 8df576f62a46
+Successfully built 8df576f62a46
+Successfully tagged xiaohuidocker_tup:latest
+WARNING: Image for service tup was built because it did not already exist. To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.
+Building ui
+Step 1/5 : FROM node
+latest: Pulling from library/node
+c5e155d5a1d1: Already exists
+221d80d00ae9: Already exists
+4250b3117dca: Already exists
+3b7ca19181b2: Already exists
+425d7b2a5bcc: Already exists
+69df12c70287: Pull complete
+9b754a1bcda7: Pull complete
+74b273083e97: Pull complete
+Digest: sha256:3d4411d1933dc93e78b9e0de556a22178269952b98cbbea7ca935d890527ae27
+Status: Downloaded newer image for node:latest
+ ---> 502d06d3bfdf
+Step 2/5 : Add docker-entrypoint.sh  /
+ ---> 4287a19c5c24
+Step 3/5 : RUN chmod +x /docker-entrypoint.sh
+ ---> Running in 0a178cadb694
+Removing intermediate container 0a178cadb694
+ ---> 1d8a91284379
+Step 4/5 : WORKDIR /code/zhmed/jsserver/
+ ---> Running in e814c4529bef
+Removing intermediate container e814c4529bef
+ ---> 5c28e4a6f722
+Step 5/5 : RUN npm install mqtt --save && npm install socket.io --save
+ ---> Running in a9e88c590603
+npm WARN saveError ENOENT: no such file or directory, open '/code/zhmed/jsserver/package.json'
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN enoent ENOENT: no such file or directory, open '/code/zhmed/jsserver/package.json'
+npm WARN jsserver No description
+npm WARN jsserver No repository field.
+npm WARN jsserver No README data
+npm WARN jsserver No license field.
+
++ mqtt@2.18.8
+added 69 packages from 47 contributors and audited 316 packages in 425.467s
+found 0 vulnerabilities
+
+npm WARN saveError ENOENT: no such file or directory, open '/code/zhmed/jsserver/package.json'
+npm WARN enoent ENOENT: no such file or directory, open '/code/zhmed/jsserver/package.json'
+npm WARN jsserver No description
+npm WARN jsserver No repository field.
+npm WARN jsserver No README data
+npm WARN jsserver No license field.
+
++ socket.io@2.2.0
+added 46 packages from 32 contributors and audited 1091 packages in 33.26s
+found 0 vulnerabilities
+
+Removing intermediate container a9e88c590603
+ ---> 955f999d6d96
+Successfully built 955f999d6d96
+Successfully tagged xiaohuidocker_ui:latest
+WARNING: Image for service ui was built because it did not already exist. To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.
+Creating mqtt    ... done
+Creating redis   ... done
+Creating dbadmin ... done
+Creating db      ... done
+Creating ui      ... done
+Creating hst     ... done
+Creating tup     ... done
+Attaching to dbadmin, ui, db, redis, mqtt, hst, tup
+dbadmin    | PHP 7.3.5 Development Server started at Sat May 11 06:49:48 2019
+ui         | zhmed
+ui         | internal/modules/cjs/loader.js:613
+ui         |     throw err;
+ui         |     ^
+ui         | 
+ui         | Error: Cannot find module '/code/zhmed/jsserver/launch.js'
+ui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:610:15)
+ui         |     at Function.Module._load (internal/modules/cjs/loader.js:526:27)
+ui         |     at Function.Module.runMain (internal/modules/cjs/loader.js:822:10)
+ui         |     at internal/main/run_main_module.js:17:11
+db         | Initializing database
+redis      | 1:C 11 May 2019 06:49:50.416 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis      | 1:C 11 May 2019 06:49:50.416 # Redis version=5.0.4, bits=64, commit=00000000, modified=0, pid=1, just started
+redis      | 1:C 11 May 2019 06:49:50.416 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+redis      | 1:M 11 May 2019 06:49:50.417 * Running mode=standalone, port=6379.
+mqtt       | node.max_ports=1048576
+redis      | 1:M 11 May 2019 06:49:50.417 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+redis      | 1:M 11 May 2019 06:49:50.417 # Server initialized
+redis      | 1:M 11 May 2019 06:49:50.417 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+redis      | 1:M 11 May 2019 06:49:50.417 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+redis      | 1:M 11 May 2019 06:49:50.417 * Ready to accept connections
+mqtt       | listener.tcp.external.acceptors=64
+hst        | wait-for-it.sh: waiting 15 seconds for db:3305
+ui exited with code 0
+tup        | wait-for-it.sh: waiting 15 seconds for hst:7999
+mqtt       | listener.ssl.external.acceptors=32
+mqtt       | node.process_limit=2097152
+mqtt       | node.max_ets_tables=2097152
+mqtt       | listener.ws.external.acceptors=16
+mqtt       | node.name=dfe12a95198c@172.18.0.6
+mqtt       | emqx 3.1.1 is started successfully!
+mqtt       | ['2019-05-11T06:50:00Z']:waiting emqx
+mqtt       | ['2019-05-11T06:50:06Z']:emqx start
+hst        | wait-for-it.sh: timeout occurred after waiting 15 seconds for db:3305
+hst        | 20e996035634
+hst        | LOCAL_WK_TARGET:-1
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 583, in connect
+hst        |     **kwargs)
+hst        |   File "/usr/local/lib/python3.6/socket.py", line 724, in create_connection
+hst        |     raise err
+hst        |   File "/usr/local/lib/python3.6/socket.py", line 713, in create_connection
+hst        |     sock.connect(sa)
+hst        | ConnectionRefusedError: [Errno 111] Connection refused
+hst        | 
+hst        | During handling of the above exception, another exception occurred:
+hst        | 
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 195, in connect
+hst        |     self.connection = self.get_new_connection(conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 229, in get_new_connection
+hst        |     return Database.connect(**conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/__init__.py", line 94, in Connect
+hst        |     return Connection(*args, **kwargs)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 325, in __init__
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 630, in connect
+hst        |     raise exc
+hst        | pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")
+hst        | 
+hst        | The above exception was the direct cause of the following exception:
+hst        | 
+hst        | Traceback (most recent call last):
+hst        |   File "/code/DjoSiteDba/manage.py", line 15, in <module>
+hst        |     execute_from_command_line(sys.argv)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/core/management/__init__.py", line 381, in execute_from_command_line
+hst        |     utility.execute()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/core/management/__init__.py", line 375, in execute
+hst        |     self.fetch_command(subcommand).run_from_argv(self.argv)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/core/management/base.py", line 323, in run_from_argv
+hst        |     self.execute(*args, **cmd_options)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/core/management/base.py", line 361, in execute
+hst        |     self.check()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/core/management/base.py", line 390, in check
+hst        |     include_deployment_checks=include_deployment_checks,
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/core/management/commands/migrate.py", line 64, in _run_checks
+hst        |     issues = run_checks(tags=[Tags.database])
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/core/checks/registry.py", line 72, in run_checks
+hst        |     new_errors = check(app_configs=app_configs)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/core/checks/database.py", line 10, in check_database_backends
+hst        |     issues.extend(conn.validation.check(**kwargs))
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/mysql/validation.py", line 9, in check
+hst        |     issues.extend(self._check_sql_mode(**kwargs))
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/mysql/validation.py", line 13, in _check_sql_mode
+hst        |     with self.connection.cursor() as cursor:
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 256, in cursor
+hst        |     return self._cursor()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 233, in _cursor
+hst        |     self.ensure_connection()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/utils.py", line 89, in __exit__
+hst        |     raise dj_exc_value.with_traceback(traceback) from exc_value
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 195, in connect
+hst        |     self.connection = self.get_new_connection(conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 229, in get_new_connection
+hst        |     return Database.connect(**conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/__init__.py", line 94, in Connect
+hst        |     return Connection(*args, **kwargs)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 325, in __init__
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 630, in connect
+hst        |     raise exc
+hst        | django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")
+tup        | wait-for-it.sh: hst:7999 is available after 14 seconds
+hst        | 172.18.0.7 - - [11/May/2019 14:50:10] "POST /post HTTP/1.1" 200 -
+hst        | ----------------------------------------
+hst        | Exception happened during processing of request from ('172.18.0.7', 50534)
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 583, in connect
+hst        |     **kwargs)
+hst        |   File "/usr/local/lib/python3.6/socket.py", line 724, in create_connection
+hst        |     raise err
+hst        |   File "/usr/local/lib/python3.6/socket.py", line 713, in create_connection
+hst        |     sock.connect(sa)
+hst        | ConnectionRefusedError: [Errno 111] Connection refused
+hst        | 
+hst        | During handling of the above exception, another exception occurred:
+hst        | 
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 195, in connect
+hst        |     self.connection = self.get_new_connection(conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 229, in get_new_connection
+hst        |     return Database.connect(**conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/__init__.py", line 94, in Connect
+hst        |     return Connection(*args, **kwargs)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 325, in __init__
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 630, in connect
+hst        |     raise exc
+hst        | pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")
+hst        | 
+hst        | The above exception was the direct cause of the following exception:
+hst        | 
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 320, in _handle_request_noblock
+hst        |     self.process_request(request, client_address)
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 351, in process_request
+hst        |     self.finish_request(request, client_address)
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 364, in finish_request
+hst        |     self.RequestHandlerClass(request, client_address, self)
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 724, in __init__
+hst        |     self.handle()
+hst        |   File "/usr/local/lib/python3.6/http/server.py", line 418, in handle
+hst        |     self.handle_one_request()
+hst        |   File "/usr/local/lib/python3.6/http/server.py", line 406, in handle_one_request
+hst        |     method()
+hst        |   File "/code/hst/PkgAccessEntry/ModAccessHttpHandler.py", line 152, in do_POST
+hst        |     varProcessResult = varClassInputHandler.inputCmdHandlerEntry(jsonInput)
+hst        |   File "/code/hst/PkgAccessEntry/ModAccessCmdHandler.py", line 322, in inputCmdHandlerEntry
+hst        |     self.achContentResExt = proc.dft_cebs_msg_process_user_sheet(inputStr['parContent'])
+hst        |   File "/code/hst/PkgHstDba/ModDbaMainEntry.py", line 643, in dft_cebs_msg_process_user_sheet
+hst        |     result=dbaCebsObj.dft_dbi_user_sheet_add(inputData)
+hst        |   File "/code/hst/PkgHstDba/ModDbaCebs.py", line 25, in dft_dbi_user_sheet_add
+hst        |     result = DappDbCebs_view.dft_dbi_user_sheet_add(inputData)
+hst        |   File "/code/DjoSiteDba/DappDbCebs/views.py", line 1428, in dft_dbi_user_sheet_add
+hst        |     if result.exists():
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/query.py", line 766, in exists
+hst        |     return self.query.has_results(using=self.db)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/query.py", line 522, in has_results
+hst        |     return compiler.has_results()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1070, in has_results
+hst        |     return bool(self.execute_sql(SINGLE))
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1098, in execute_sql
+hst        |     cursor = self.connection.cursor()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 256, in cursor
+hst        |     return self._cursor()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 233, in _cursor
+hst        |     self.ensure_connection()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/utils.py", line 89, in __exit__
+hst        |     raise dj_exc_value.with_traceback(traceback) from exc_value
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 195, in connect
+hst        |     self.connection = self.get_new_connection(conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 229, in get_new_connection
+hst        |     return Database.connect(**conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/__init__.py", line 94, in Connect
+hst        |     return Connection(*args, **kwargs)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 325, in __init__
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 630, in connect
+hst        |     raise exc
+hst        | django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")
+hst        | ----------------------------------------
+hst        | 172.18.0.7 - - [11/May/2019 14:50:10] "POST /post HTTP/1.1" 200 -
+hst        | ----------------------------------------
+hst        | Exception happened during processing of request from ('172.18.0.7', 50538)
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 583, in connect
+hst        |     **kwargs)
+hst        |   File "/usr/local/lib/python3.6/socket.py", line 724, in create_connection
+hst        |     raise err
+hst        |   File "/usr/local/lib/python3.6/socket.py", line 713, in create_connection
+hst        |     sock.connect(sa)
+hst        | ConnectionRefusedError: [Errno 111] Connection refused
+hst        | 
+hst        | During handling of the above exception, another exception occurred:
+hst        | 
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 195, in connect
+hst        |     self.connection = self.get_new_connection(conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 229, in get_new_connection
+hst        |     return Database.connect(**conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/__init__.py", line 94, in Connect
+hst        |     return Connection(*args, **kwargs)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 325, in __init__
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 630, in connect
+hst        |     raise exc
+hst        | pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")
+hst        | 
+hst        | The above exception was the direct cause of the following exception:
+hst        | 
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 320, in _handle_request_noblock
+hst        |     self.process_request(request, client_address)
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 351, in process_request
+hst        |     self.finish_request(request, client_address)
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 364, in finish_request
+hst        |     self.RequestHandlerClass(request, client_address, self)
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 724, in __init__
+hst        |     self.handle()
+hst        |   File "/usr/local/lib/python3.6/http/server.py", line 418, in handle
+hst        |     self.handle_one_request()
+hst        |   File "/usr/local/lib/python3.6/http/server.py", line 406, in handle_one_request
+hst        |     method()
+hst        |   File "/code/hst/PkgAccessEntry/ModAccessHttpHandler.py", line 152, in do_POST
+hst        |     varProcessResult = varClassInputHandler.inputCmdHandlerEntry(jsonInput)
+hst        |   File "/code/hst/PkgAccessEntry/ModAccessCmdHandler.py", line 332, in inputCmdHandlerEntry
+hst        |     self.achContentResExt = proc.dft_cebs_msg_process_cali_profile(inputStr['parContent'])
+hst        |   File "/code/hst/PkgHstDba/ModDbaMainEntry.py", line 677, in dft_cebs_msg_process_cali_profile
+hst        |     result=dbaCebsObj.dft_dbi_cali_profile_add(inputData)
+hst        |   File "/code/hst/PkgHstDba/ModDbaCebs.py", line 97, in dft_dbi_cali_profile_add
+hst        |     result = DappDbCebs_view.dft_dbi_cali_profile_add(inputData)
+hst        |   File "/code/DjoSiteDba/DappDbCebs/views.py", line 1582, in dft_dbi_cali_profile_add
+hst        |     if result.exists():
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/query.py", line 766, in exists
+hst        |     return self.query.has_results(using=self.db)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/query.py", line 522, in has_results
+hst        |     return compiler.has_results()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1070, in has_results
+hst        |     return bool(self.execute_sql(SINGLE))
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1098, in execute_sql
+hst        |     cursor = self.connection.cursor()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 256, in cursor
+hst        |     return self._cursor()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 233, in _cursor
+hst        |     self.ensure_connection()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/utils.py", line 89, in __exit__
+hst        |     raise dj_exc_value.with_traceback(traceback) from exc_value
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 195, in connect
+hst        |     self.connection = self.get_new_connection(conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 229, in get_new_connection
+hst        |     return Database.connect(**conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/__init__.py", line 94, in Connect
+hst        |     return Connection(*args, **kwargs)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 325, in __init__
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 630, in connect
+hst        |     raise exc
+hst        | django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")
+hst        | ----------------------------------------
+hst        | 172.18.0.7 - - [11/May/2019 14:50:10] "POST /post HTTP/1.1" 200 -
+hst        | ----------------------------------------
+hst        | Exception happened during processing of request from ('172.18.0.7', 50542)
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 583, in connect
+hst        |     **kwargs)
+hst        |   File "/usr/local/lib/python3.6/socket.py", line 724, in create_connection
+hst        |     raise err
+hst        |   File "/usr/local/lib/python3.6/socket.py", line 713, in create_connection
+hst        |     sock.connect(sa)
+hst        | ConnectionRefusedError: [Errno 111] Connection refused
+hst        | 
+hst        | During handling of the above exception, another exception occurred:
+hst        | 
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 195, in connect
+hst        |     self.connection = self.get_new_connection(conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 229, in get_new_connection
+hst        |     return Database.connect(**conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/__init__.py", line 94, in Connect
+hst        |     return Connection(*args, **kwargs)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 325, in __init__
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 630, in connect
+hst        |     raise exc
+hst        | pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")
+hst        | 
+hst        | The above exception was the direct cause of the following exception:
+hst        | 
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 320, in _handle_request_noblock
+hst        |     self.process_request(request, client_address)
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 351, in process_request
+hst        |     self.finish_request(request, client_address)
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 364, in finish_request
+hst        |     self.RequestHandlerClass(request, client_address, self)
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 724, in __init__
+hst        |     self.handle()
+hst        |   File "/usr/local/lib/python3.6/http/server.py", line 418, in handle
+hst        |     self.handle_one_request()
+hst        |   File "/usr/local/lib/python3.6/http/server.py", line 406, in handle_one_request
+hst        |     method()
+hst        |   File "/code/hst/PkgAccessEntry/ModAccessHttpHandler.py", line 152, in do_POST
+hst        |     varProcessResult = varClassInputHandler.inputCmdHandlerEntry(jsonInput)
+hst        |   File "/code/hst/PkgAccessEntry/ModAccessCmdHandler.py", line 322, in inputCmdHandlerEntry
+hst        |     self.achContentResExt = proc.dft_cebs_msg_process_user_sheet(inputStr['parContent'])
+hst        |   File "/code/hst/PkgHstDba/ModDbaMainEntry.py", line 649, in dft_cebs_msg_process_user_sheet
+hst        |     result=dbaCebsObj.dft_dbi_user_sheet_modify(inputData)
+hst        |   File "/code/hst/PkgHstDba/ModDbaCebs.py", line 34, in dft_dbi_user_sheet_modify
+hst        |     result = DappDbCebs_view.dft_dbi_user_sheet_modify(inputData)
+hst        |   File "/code/DjoSiteDba/DappDbCebs/views.py", line 1449, in dft_dbi_user_sheet_modify
+hst        |     if result.exists():
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/query.py", line 766, in exists
+hst        |     return self.query.has_results(using=self.db)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/query.py", line 522, in has_results
+hst        |     return compiler.has_results()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1070, in has_results
+hst        |     return bool(self.execute_sql(SINGLE))
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1098, in execute_sql
+hst        |     cursor = self.connection.cursor()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 256, in cursor
+hst        |     return self._cursor()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 233, in _cursor
+hst        |     self.ensure_connection()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/utils.py", line 89, in __exit__
+hst        |     raise dj_exc_value.with_traceback(traceback) from exc_value
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 195, in connect
+hst        |     self.connection = self.get_new_connection(conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 229, in get_new_connection
+hst        |     return Database.connect(**conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/__init__.py", line 94, in Connect
+hst        |     return Connection(*args, **kwargs)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 325, in __init__
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 630, in connect
+hst        |     raise exc
+hst        | django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")
+hst        | ----------------------------------------
+hst        | 172.18.0.7 - - [11/May/2019 14:50:10] "POST /post HTTP/1.1" 200 -
+hst        | ----------------------------------------
+hst        | Exception happened during processing of request from ('172.18.0.7', 50546)
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 583, in connect
+hst        |     **kwargs)
+hst        |   File "/usr/local/lib/python3.6/socket.py", line 724, in create_connection
+hst        |     raise err
+hst        |   File "/usr/local/lib/python3.6/socket.py", line 713, in create_connection
+hst        |     sock.connect(sa)
+hst        | ConnectionRefusedError: [Errno 111] Connection refused
+hst        | 
+hst        | During handling of the above exception, another exception occurred:
+hst        | 
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 195, in connect
+hst        |     self.connection = self.get_new_connection(conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 229, in get_new_connection
+hst        |     return Database.connect(**conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/__init__.py", line 94, in Connect
+hst        |     return Connection(*args, **kwargs)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 325, in __init__
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 630, in connect
+hst        |     raise exc
+hst        | pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")
+hst        | 
+hst        | The above exception was the direct cause of the following exception:
+hst        | 
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 320, in _handle_request_noblock
+hst        |     self.process_request(request, client_address)
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 351, in process_request
+hst        |     self.finish_request(request, client_address)
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 364, in finish_request
+hst        |     self.RequestHandlerClass(request, client_address, self)
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 724, in __init__
+hst        |     self.handle()
+hst        |   File "/usr/local/lib/python3.6/http/server.py", line 418, in handle
+hst        |     self.handle_one_request()
+hst        |   File "/usr/local/lib/python3.6/http/server.py", line 406, in handle_one_request
+hst        |     method()
+hst        |   File "/code/hst/PkgAccessEntry/ModAccessHttpHandler.py", line 152, in do_POST
+hst        |     varProcessResult = varClassInputHandler.inputCmdHandlerEntry(jsonInput)
+hst        |   File "/code/hst/PkgAccessEntry/ModAccessCmdHandler.py", line 362, in inputCmdHandlerEntry
+hst        |     self.achContentResExt = proc.dft_cebs_msg_process_init_result(inputStr['parContent'])
+hst        |   File "/code/hst/PkgHstDba/ModDbaMainEntry.py", line 780, in dft_cebs_msg_process_init_result
+hst        |     result=dbaCebsObj.dft_dbi_cebs_init_config_read(inputData)
+hst        |   File "/code/hst/PkgHstDba/ModDbaCebs.py", line 247, in dft_dbi_cebs_init_config_read
+hst        |     result = DappDbCebs_view.dft_dbi_cebs_init_config_read(inputData)
+hst        |   File "/code/DjoSiteDba/DappDbCebs/views.py", line 2375, in dft_dbi_cebs_init_config_read
+hst        |     if result.exists():
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/query.py", line 766, in exists
+hst        |     return self.query.has_results(using=self.db)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/query.py", line 522, in has_results
+hst        |     return compiler.has_results()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1070, in has_results
+hst        |     return bool(self.execute_sql(SINGLE))
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1098, in execute_sql
+hst        |     cursor = self.connection.cursor()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 256, in cursor
+hst        |     return self._cursor()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 233, in _cursor
+hst        |     self.ensure_connection()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/utils.py", line 89, in __exit__
+hst        |     raise dj_exc_value.with_traceback(traceback) from exc_value
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 195, in connect
+hst        |     self.connection = self.get_new_connection(conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 229, in get_new_connection
+hst        |     return Database.connect(**conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/__init__.py", line 94, in Connect
+hst        |     return Connection(*args, **kwargs)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 325, in __init__
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 630, in connect
+hst        |     raise exc
+hst        | django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")
+hst        | ----------------------------------------
+hst        | 172.18.0.7 - - [11/May/2019 14:50:10] "POST /post HTTP/1.1" 200 -
+hst        | ----------------------------------------
+hst        | Exception happened during processing of request from ('172.18.0.7', 50550)
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 583, in connect
+hst        |     **kwargs)
+hst        |   File "/usr/local/lib/python3.6/socket.py", line 724, in create_connection
+hst        |     raise err
+hst        |   File "/usr/local/lib/python3.6/socket.py", line 713, in create_connection
+hst        |     sock.connect(sa)
+hst        | ConnectionRefusedError: [Errno 111] Connection refused
+hst        | 
+hst        | During handling of the above exception, another exception occurred:
+hst        | 
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 195, in connect
+hst        |     self.connection = self.get_new_connection(conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 229, in get_new_connection
+hst        |     return Database.connect(**conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/__init__.py", line 94, in Connect
+hst        |     return Connection(*args, **kwargs)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 325, in __init__
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 630, in connect
+hst        |     raise exc
+hst        | pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")
+hst        | 
+hst        | The above exception was the direct cause of the following exception:
+hst        | 
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 320, in _handle_request_noblock
+hst        |     self.process_request(request, client_address)
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 351, in process_request
+hst        |     self.finish_request(request, client_address)
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 364, in finish_request
+hst        |     self.RequestHandlerClass(request, client_address, self)
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 724, in __init__
+hst        |     self.handle()
+hst        |   File "/usr/local/lib/python3.6/http/server.py", line 418, in handle
+hst        |     self.handle_one_request()
+hst        |   File "/usr/local/lib/python3.6/http/server.py", line 406, in handle_one_request
+hst        |     method()
+hst        |   File "/code/hst/PkgAccessEntry/ModAccessHttpHandler.py", line 152, in do_POST
+hst        |     varProcessResult = varClassInputHandler.inputCmdHandlerEntry(jsonInput)
+hst        |   File "/code/hst/PkgAccessEntry/ModAccessCmdHandler.py", line 322, in inputCmdHandlerEntry
+hst        |     self.achContentResExt = proc.dft_cebs_msg_process_user_sheet(inputStr['parContent'])
+hst        |   File "/code/hst/PkgHstDba/ModDbaMainEntry.py", line 646, in dft_cebs_msg_process_user_sheet
+hst        |     result=dbaCebsObj.dft_dbi_user_sheet_read(inputData)
+hst        |   File "/code/hst/PkgHstDba/ModDbaCebs.py", line 43, in dft_dbi_user_sheet_read
+hst        |     result = DappDbCebs_view.dft_dbi_user_sheet_read(inputData)
+hst        |   File "/code/DjoSiteDba/DappDbCebs/views.py", line 1487, in dft_dbi_user_sheet_read
+hst        |     if result.exists():
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/query.py", line 766, in exists
+hst        |     return self.query.has_results(using=self.db)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/query.py", line 522, in has_results
+hst        |     return compiler.has_results()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1070, in has_results
+hst        |     return bool(self.execute_sql(SINGLE))
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1098, in execute_sql
+hst        |     cursor = self.connection.cursor()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 256, in cursor
+hst        |     return self._cursor()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 233, in _cursor
+hst        |     self.ensure_connection()
+tup        | outputJson {'restTag': 'dba', 'actionId': 3799, 'parFlag': 7, 'parContent': {'cmd': 'add', 'uid': 'UID3982146', 'login_name': 'admin', 'pass_word': '13456', 'grade_level': 1, 'email': '13525@.com', 'memo': 'this'}}
+tup        | b''
+tup        | HSTAPI: Not fetch right feedback!
+tup        | inputJson 
+tup        | (-2, '')
+tup        | outputJson {'restTag': 'dba', 'actionId': 3801, 'parFlag': 7, 'parContent': {'cmd': 'add', 'platetype': 1, 'uid': 'UID3982146', 'left_bot_x': 0, 'left_bot_y': 0, 'right_up_x': 0, 'right_up_y': 0}}
+tup        | b''
+tup        | HSTAPI: Not fetch right feedback!
+tup        | inputJson 
+tup        | (-2, '')
+tup        | outputJson {'restTag': 'dba', 'actionId': 3799, 'parFlag': 4, 'parContent': {'cmd': 'modify', 'uid': 'UID3982146', 'pass_word': 54321, 'reg_date': '2019-03-01 08:33:33'}}
+tup        | b''
+tup        | HSTAPI: Not fetch right feedback!
+tup        | inputJson 
+tup        | (-2, '')
+tup        | outputJson {'restTag': 'dba', 'actionId': 3807, 'parFlag': 1, 'parContent': {'cmd': 'read'}}
+tup        | b''
+tup        | HSTAPI: Not fetch right feedback!
+tup        | inputJson 
+tup        | (-2, '')
+tup        | outputJson {'restTag': 'dba', 'actionId': 3799, 'parFlag': 2, 'parContent': {'cmd': 'read', 'uid': 'UID3982146'}}
+tup        | b''
+tup        | HSTAPI: Not fetch right feedback!
+tup        | inputJson 
+tup        | (-2, '')
+tup        | outputJson {'restTag': 'dba', 'actionId': 3801, 'parFlag': 2, 'parContent': {'cmd': 'read', 'id': 1}}
+tup        | b''
+tup        | HSTAPI: Not fetch right feedback!
+tup        | inputJson 
+tup        | (-2, '')
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/utils.py", line 89, in __exit__
+hst        |     raise dj_exc_value.with_traceback(traceback) from exc_value
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 195, in connect
+hst        |     self.connection = self.get_new_connection(conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 229, in get_new_connection
+hst        |     return Database.connect(**conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/__init__.py", line 94, in Connect
+hst        |     return Connection(*args, **kwargs)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 325, in __init__
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 630, in connect
+hst        |     raise exc
+hst        | django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")
+hst        | ----------------------------------------
+hst        | 172.18.0.7 - - [11/May/2019 14:50:10] "POST /post HTTP/1.1" 200 -
+hst        | ----------------------------------------
+hst        | Exception happened during processing of request from ('172.18.0.7', 50554)
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 583, in connect
+hst        |     **kwargs)
+hst        |   File "/usr/local/lib/python3.6/socket.py", line 724, in create_connection
+hst        |     raise err
+hst        |   File "/usr/local/lib/python3.6/socket.py", line 713, in create_connection
+hst        |     sock.connect(sa)
+hst        | ConnectionRefusedError: [Errno 111] Connection refused
+hst        | 
+hst        | During handling of the above exception, another exception occurred:
+hst        | 
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 195, in connect
+hst        |     self.connection = self.get_new_connection(conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 229, in get_new_connection
+hst        |     return Database.connect(**conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/__init__.py", line 94, in Connect
+hst        |     return Connection(*args, **kwargs)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 325, in __init__
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 630, in connect
+hst        |     raise exc
+hst        | pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")
+hst        | 
+hst        | The above exception was the direct cause of the following exception:
+hst        | 
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 320, in _handle_request_noblock
+hst        |     self.process_request(request, client_address)
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 351, in process_request
+hst        |     self.finish_request(request, client_address)
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 364, in finish_request
+hst        |     self.RequestHandlerClass(request, client_address, self)
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 724, in __init__
+hst        |     self.handle()
+hst        |   File "/usr/local/lib/python3.6/http/server.py", line 418, in handle
+hst        |     self.handle_one_request()
+hst        |   File "/usr/local/lib/python3.6/http/server.py", line 406, in handle_one_request
+hst        |     method()
+hst        |   File "/code/hst/PkgAccessEntry/ModAccessHttpHandler.py", line 152, in do_POST
+hst        |     varProcessResult = varClassInputHandler.inputCmdHandlerEntry(jsonInput)
+hst        |   File "/code/hst/PkgAccessEntry/ModAccessCmdHandler.py", line 332, in inputCmdHandlerEntry
+hst        |     self.achContentResExt = proc.dft_cebs_msg_process_cali_profile(inputStr['parContent'])
+hst        |   File "/code/hst/PkgHstDba/ModDbaMainEntry.py", line 680, in dft_cebs_msg_process_cali_profile
+hst        |     result=dbaCebsObj.dft_dbi_cali_profile_read(inputData)
+hst        |   File "/code/hst/PkgHstDba/ModDbaCebs.py", line 115, in dft_dbi_cali_profile_read
+hst        |     result = DappDbCebs_view.dft_dbi_cali_profile_read(inputData)
+hst        |   File "/code/DjoSiteDba/DappDbCebs/views.py", line 1675, in dft_dbi_cali_profile_read
+hst        |     if result.exists():
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/query.py", line 766, in exists
+hst        |     return self.query.has_results(using=self.db)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/query.py", line 522, in has_results
+hst        |     return compiler.has_results()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1070, in has_results
+hst        |     return bool(self.execute_sql(SINGLE))
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1098, in execute_sql
+hst        |     cursor = self.connection.cursor()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 256, in cursor
+hst        |     return self._cursor()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 233, in _cursor
+hst        |     self.ensure_connection()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/utils.py", line 89, in __exit__
+hst        |     raise dj_exc_value.with_traceback(traceback) from exc_value
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 195, in connect
+hst        |     self.connection = self.get_new_connection(conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 229, in get_new_connection
+hst        |     return Database.connect(**conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/__init__.py", line 94, in Connect
+hst        |     return Connection(*args, **kwargs)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 325, in __init__
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 630, in connect
+hst        |     raise exc
+hst        | django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")
+hst        | ----------------------------------------
+hst        | 172.18.0.7 - - [11/May/2019 14:50:11] "POST /post HTTP/1.1" 200 -
+hst        | ----------------------------------------
+hst        | Exception happened during processing of request from ('172.18.0.7', 50558)
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 583, in connect
+hst        |     **kwargs)
+hst        |   File "/usr/local/lib/python3.6/socket.py", line 724, in create_connection
+hst        |     raise err
+hst        |   File "/usr/local/lib/python3.6/socket.py", line 713, in create_connection
+hst        |     sock.connect(sa)
+hst        | ConnectionRefusedError: [Errno 111] Connection refused
+hst        | 
+hst        | During handling of the above exception, another exception occurred:
+hst        | 
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 217, in ensure_connection
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/base/base.py", line 195, in connect
+hst        |     self.connection = self.get_new_connection(conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 229, in get_new_connection
+hst        |     return Database.connect(**conn_params)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/__init__.py", line 94, in Connect
+hst        |     return Connection(*args, **kwargs)
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 325, in __init__
+hst        |     self.connect()
+hst        |   File "/usr/local/lib/python3.6/site-packages/pymysql/connections.py", line 630, in connect
+hst        |     raise exc
+hst        | pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")
+hst        | 
+hst        | The above exception was the direct cause of the following exception:
+hst        | 
+hst        | Traceback (most recent call last):
+hst        |   File "/usr/local/lib/python3.6/socketserver.py", line 320, in _handle_request_noblock
+hst        |     self.process_request(request, client_address)
+tup        | outputJson {'restTag': 'dba', 'actionId': 3807, 'parFlag': 1, 'parContent': {'cmd': 'read'}}
+tup        | b''
+tup        | HSTAPI: Not fetch right feedback!
+tup        | inputJson 
+tup        | 
+tup        | ===================================1
+tup        | <class 'object'>
+tup        | {'PIC_ABS_ORIGIN_PATH': 'dir_origin', 'PIC_ABS_MIDDLE_PATH': 'dir_middle'}
+tup        | PIC_ABS_ORIGIN_PATH
+tup        | Traceback (most recent call last):
+tup        |   File "/code/tup/tupMain.py", line 1, in <module>
+tup        |     from PkgL3cebsHandler import ModCebsPrjEntry_H5UI
+tup        |   File "/code/tup/PkgL3cebsHandler/ModCebsPrjEntry_H5UI.py", line 14, in <module>
+tup        |     from PkgL2svrUniv import ModCebsHuicobus
+tup        |   File "/code/tup/PkgL2svrUniv/ModCebsHuicobus.py", line 6, in <module>
+tup        |     from PkgL2svrHandler.ModHuicobus import *
+tup        |   File "/code/tup/PkgL2svrHandler/ModHuicobus.py", line 43, in <module>
+tup        |     from PkgL3cebsHandler.ModCebsCom import *
+tup        |   File "/code/tup/PkgL3cebsHandler/ModCebsCom.py", line 151, in <module>
+tup        |     GLCFG_PAR_OFC = clsL0_MedComCfgPar()
+tup        |   File "/code/tup/PkgL3cebsHandler/ModCebsCom.py", line 145, in __init__
+tup        |     fun_set_conf_from_databse("GLCFG_PAR_OFC",self)
+tup        |   File "/code/tup/PkgL3cebsHandler/ModCebsCom.py", line 98, in fun_set_conf_from_databse
+tup        |     print(initDictFromDatabase[_ATTR_MAP_DATAFILED['ModCebsCom'][cnfTypeName][i]])
+tup        | TypeError: string indices must be integers
+tup exited with code 0
+db         | 2019-05-11T06:49:49.950786Z 0 [Warning] [MY-011070] [Server] 'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it' is deprecated and will be removed in a future release.
+db         | 2019-05-11T06:49:49.950902Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.0.16) initializing of server in progress as process 29
+db         | 2019-05-11T06:50:28.186647Z 5 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+db         | 2019-05-11T06:50:44.081715Z 0 [System] [MY-013170] [Server] /usr/sbin/mysqld (mysqld 8.0.16) initializing of server has completed
+db         | Database initialized
+db         | MySQL init process in progress...
+db         | MySQL init process in progress...
+db         | MySQL init process in progress...
+db         | 2019-05-11T06:50:47.133570Z 0 [Warning] [MY-011070] [Server] 'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it' is deprecated and will be removed in a future release.
+db         | 2019-05-11T06:50:47.133672Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.16) starting as process 80
+db         | 2019-05-11T06:50:49.020783Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+db         | 2019-05-11T06:50:49.061780Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+db         | 2019-05-11T06:50:49.093270Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.16'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server - GPL.
+db         | 2019-05-11T06:50:49.303540Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Socket: '/var/run/mysqld/mysqlx.sock'
+db         | Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
+db         | Warning: Unable to load '/usr/share/zoneinfo/leap-seconds.list' as time zone. Skipping it.
+db         | Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
+db         | Warning: Unable to load '/usr/share/zoneinfo/zone1970.tab' as time zone. Skipping it.
+db         | mysql: [Warning] Using a password on the command line interface can be insecure.
+db         | 
+db         | 2019-05-11T06:50:57.521250Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.16)  MySQL Community Server - GPL.
+db         | 
+db         | MySQL init process done. Ready for start up.
+db         | 
+db         | 2019-05-11T06:50:57.866046Z 0 [Warning] [MY-011070] [Server] 'Disabling symbolic links using --skip-symbolic-links (or equivalent) is the default. Consider not using this option as it' is deprecated and will be removed in a future release.
+db         | 2019-05-11T06:50:57.866145Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.16) starting as process 1
+db         | 2019-05-11T06:50:59.878849Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+db         | 2019-05-11T06:50:59.961790Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+db         | 2019-05-11T06:50:59.983203Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.16'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+db         | 2019-05-11T06:51:00.254837Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Socket: '/var/run/mysqld/mysqlx.sock' bind-address: '::' port: 33060
+
+
