@@ -1,4 +1,3 @@
 #!/bin/bash
-ls /code 
-node  launch.js
+node  ./jsserver/launch.js
 exec "$@"

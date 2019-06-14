@@ -77,6 +77,8 @@ services:
   ui:
     build: ./ui
     container_name: ui
+    depends_on:
+      - mqtt
     volumes:
       - ../www:/code
     entrypoint: "bash /docker-entrypoint.sh"
