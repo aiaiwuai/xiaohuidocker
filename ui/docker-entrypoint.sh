@@ -1,3 +1,3 @@
 #!/bin/bash
-node  launch.js
-exec "$@"
+# node  launch.js
+# exec "$@"

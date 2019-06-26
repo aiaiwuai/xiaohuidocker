@@ -1,4 +1,5 @@
 FROM python:3.6
+VOLUME [ "/rootfs" ]
 Add  requirements.txt /
 add pip.conf /etc/pip.conf
 RUN pip install --upgrade pip 

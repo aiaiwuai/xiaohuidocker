@@ -1,5 +1,6 @@
 FROM python:3.6
 run  apt update
+VOLUME [ "/rootfs" ]
 run apt-get install -y libgl1-mesa-glx
 Add  requirements.txt /
 add pip.conf /etc/pip.conf

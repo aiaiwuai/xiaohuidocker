@@ -86,6 +86,10 @@ services:
       - 7589:8888
     networks:
       - cebs_app
+    stdin_open: true
+    tty: true
 networks:
   cebs_app:
     driver: bridge
+
+#docker run -d -ti -p 7589:8888 -v e:\xiaohui/www/:/code  --network=xiaohuidocker_cebs_app  xiaohuidocker_ui
